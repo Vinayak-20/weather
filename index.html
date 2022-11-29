@@ -6,23 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./imd.css">
+    <script src="https://kit.fontawesome.com/432625685c.js" crossorigin="anonymous"></script>
+
 
 </head>
 <body>
  <div class="card">
-    <div class="search">
-      <h1>Wheather</h1>
+    <div class="search" id="result">
+      <!-- <i class="fa-light fa-sun-cloud"></i> -->
+      <!-- <i class="fa-solid fa-chevron-up"></i> -->
+      <!-- <img src="./istockphoto-1368007300-640x640.jpg" alt=""> -->
+      <!-- <img src="./images.jfif" alt=""> -->
+      <!-- <img src="./download.jfif" alt=""> -->
+      <!-- <img src="./2741.png" alt=""> -->
+      <!-- <img src="./2743.png" alt=""> -->
+
+
+      <h1>Weather Forecast </h1>
     <div class="i1">  <input type="text" id="cityname"> <br> <br></div>
       <button type="button" onclick="search()">Search</button>
     </div>
+    <!-- <div id="img">
+      <img src="./istockphoto-1368007300-640x640.jpg" alt="">
+      <img src="./images.jfif" alt="">
+      <img src="./download.jfif" alt="">
+
+    </div> -->
+    <!-- <div id="result"></div> -->
+  
+   
 
  </div>
 
 
 
-<div id="result">
 
-</div>
 </body>
 <script>
   function search(){
@@ -40,21 +58,26 @@ rise=tempdata.sys.sunrise;
 set=tempdata.sys.sunset;
 humid=tempdata.main.humidity;
 wind=tempdata.wind.speed;
-fahr=(tempdata.main.temp)
-a=(fahr-32)*5;
-celcius=Math.floor(a/9);
+kelvin=(tempdata.main.temp)
 
-htmldata=`<div class="card" style="width: 18rem;">
 
-  <div class="card-body">
-    <h5 class="card-title">${cityname}</h5>
+
+ celcius=Math.floor(kelvin-273.15);
+
+ htmldata=`<div class="card" style="width: 18rem;">
+ 
+  <div class="card-body" > 
+
+
+    <h5 class="card-title"> City Name : ${cityname }</h5>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">${weathertype}</li>
-    <li class="list-group-item">${rise}</li>
-    <li class="list-group-item">${set}</li>
-    <li class="list-group-item">${humid}</li>
-
+    <li class="list-group-item"> Weathertype : ${weathertype}</li>
+    <li class="list-group-item"> Sunrise :  ${rise}</li>
+    <li class="list-group-item"> Sunset : ${set}</li>
+    <li class="list-group-item"> Humidity : ${humid}</li>
+    <li class="list-group-item"> Temperature : ${celcius}<sup>0</sup>C</li>
+    <li class="list-group-item"> Wind Speed : ${wind}</li>
   </ul>
 </div>`
 
@@ -62,8 +85,8 @@ htmldata=`<div class="card" style="width: 18rem;">
 
 
 
-
 result.innerHTML=htmldata
+img.innerHTML=htmldata
 
 
 
