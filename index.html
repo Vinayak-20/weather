@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./imd.css">
+
+</head>
+<body>
+ <div class="card">
+    <div class="search">
+      <h1>Wheather</h1>
+    <div class="i1">  <input type="text" id="cityname"> <br> <br></div>
+      <button type="button" onclick="search()">Search</button>
+    </div>
+
+ </div>
+
+
+
+<div id="result">
+
+</div>
+</body>
+<script>
+  function search(){
+
+cityname=cityname.value;
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=5b4bee0ba241d092159faf007e166080`).then(d=>d.json()).then(res=>displaydata(res))
+}
+
+
+function displaydata(tempdata){
+
+cityname=tempdata.name;
+weathertype=tempdata.weather[0].main;
+rise=tempdata.sys.sunrise;
+set=tempdata.sys.sunset;
+humid=tempdata.main.humidity;
+wind=tempdata.wind.speed;
+fahr=(tempdata.main.temp)
+a=(fahr-32)*5;
+celcius=Math.floor(a/9);
+
+htmldata=`<div class="card" style="width: 18rem;">
+
+  <div class="card-body">
+    <h5 class="card-title">${cityname}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">${weathertype}</li>
+    <li class="list-group-item">${rise}</li>
+    <li class="list-group-item">${set}</li>
+    <li class="list-group-item">${humid}</li>
+
+  </ul>
+</div>`
+
+
+
+
+
+
+result.innerHTML=htmldata
+
+
+
+
+}
+</script>
+
+</html>
